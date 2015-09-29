@@ -7,6 +7,10 @@ class PostPolicy
   end
 
   def update?
-    user.admin? || !post.published?
+    (user && user.admin?) || !post.published?
+  end
+
+  def destroy?
+    user && user.admin?
   end
 end
